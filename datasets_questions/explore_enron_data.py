@@ -59,3 +59,9 @@ for name in combStrList:
                 tPoiNum += 1
 
 print "Selected POI Number:", len(combStrList)
+
+# James Prentice
+print enron_data["PRENTICE JAMES"]
+
+# Wesley Colwell
+print enron_data["COLWELL WESLEY"]
