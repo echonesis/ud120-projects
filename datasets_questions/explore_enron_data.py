@@ -65,3 +65,6 @@ print enron_data["PRENTICE JAMES"]
 
 # Wesley Colwell
 print enron_data["COLWELL WESLEY"]
+
+# Jeffrey K Skilling
+print enron_data["SKILLING JEFFREY K"]
