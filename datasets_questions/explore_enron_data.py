@@ -68,3 +68,10 @@ print enron_data["COLWELL WESLEY"]
 
 # Jeffrey K Skilling
 print enron_data["SKILLING JEFFREY K"]
+
+# The most toal_payments
+print 'LAY:', enron_data["LAY KENNETH L"]["total_payments"]
+print 'SKILLING:', enron_data["SKILLING JEFFREY K"]["total_payments"]
+print 'FASTOW:', enron_data["FASTOW ANDREW S"]["total_payments"]
+
+# Search NaN values for key, salary
