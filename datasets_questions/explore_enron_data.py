@@ -75,3 +75,39 @@ print 'SKILLING:', enron_data["SKILLING JEFFREY K"]["total_payments"]
 print 'FASTOW:', enron_data["FASTOW ANDREW S"]["total_payments"]
 
 # Search NaN values for key, salary
+# Possible total_keys
+salaryNum = 0
+emailNum = 0
+for name in total_keys:
+    if enron_data[name]['salary'] != 'NaN':
+        salaryNum += 1
+    if enron_data[name]['email_address'] != 'NaN':
+        emailNum += 1
+print 'Total validated salary number:', salaryNum
+print 'Total validated email number:', emailNum
+
+# total_payments NaN
+totalNum = 0
+totalNaNNum = 0
+for name in total_keys:
+    totalNum += 1
+    if enron_data[name]['total_payments'] == 'NaN':
+        totalNaNNum += 1
+print 'Total Number:', totalNum
+print 'Total NaN Number:', totalNaNNum
+print 'Percentage:', float(totalNaNNum) / float(totalNum)
+
+# POI total_payments
+selectedNum = 0
+selectedNaNNum = 0
+for name in total_keys:
+    if enron_data[name]['poi'] is True:
+        selectedNum += 1
+        if enron_data[name]['total_payments'] == 'NaN':
+            selectedNaNNum += 1
+print 'POI Number:', selectedNum
+print 'POI NaN Number:', selectedNaNNum
+print 'Percentage:', float(selectedNaNNum) / float(selectedNum)
+
+# New Ratio
+print 'New percentage:', 10.0/28.0
