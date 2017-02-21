@@ -68,6 +68,10 @@ if len(cleaned_data) > 0:
         print "you don't seem to have regression imported/created,"
         print "   or else your regression object isn't named reg"
         print "   either way, only draw the scatter plot of the cleaned data"
+
+    print 'New trained slope:', reg.coef_
+    print 'New test score:', reg.score(ages_test, net_worths_test)
+
     plt.scatter(ages, net_worths)
     plt.xlabel("ages")
     plt.ylabel("net worths")
