@@ -36,19 +36,40 @@ def Draw(pred, features, poi, mark_poi=False, name="image.png", f1_name="feature
     plt.savefig(name)
     plt.show()
 
-
+def findMaxAndMin(targetList):
+    sList = list()
+    for obj in targetList:
+        if obj != "NaN":
+            sList.append(obj)
+    return (max(sList), min(sList))
 
 ### load in the dict of dicts containing all the data on each person in the dataset
 data_dict = pickle.load( open("../final_project/final_project_dataset.pkl", "r") )
 ### there's an outlier--remove it! 
 data_dict.pop("TOTAL", 0)
+testList = data_dict.keys()
 
+# exercised_stock_options
+sList1 = list()
+item1 = "exercised_stock_options"
+for obj in testList:
+    sList1.append(data_dict[obj][item1])
+print findMaxAndMin(sList1)
+
+# Salary
+sList2 = list()
+item2 = "salary"
+for obj in testList:
+    sList2.append(data_dict[obj][item2])
+print findMaxAndMin(sList2)
 
 ### the input features we want to use 
 ### can be any key in the person-level dictionary (salary, director_fees, etc.) 
 feature_1 = "salary"
 feature_2 = "exercised_stock_options"
+#feature_3 = "total_payments"
 poi  = "poi"
+#features_list = [poi, feature_1, feature_2, feature_3]
 features_list = [poi, feature_1, feature_2]
 data = featureFormat(data_dict, features_list )
 poi, finance_features = targetFeatureSplit( data )
@@ -64,9 +85,10 @@ plt.show()
 
 ### cluster here; create predictions of the cluster labels
 ### for the data and store them to a list called pred
-
-
-
+from sklearn.cluster import KMeans
+kmeans = KMeans(n_clusters=2).fit(finance_features)
+#kmeans = KMeans(n_clusters=2, random_state=0).fit(finance_features)
+pred = kmeans.labels_
 
 ### rename the "name" parameter when you change the number of features
 ### so that the figure gets saved to a different file
