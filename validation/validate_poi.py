@@ -28,5 +28,25 @@ labels, features = targetFeatureSplit(data)
 
 
 ### it's all yours from here forward!  
+item = raw_input('Please choose if data are splitted to get training and testing set apart:')
 
+if item == 'No':
+    from sklearn.tree import DecisionTreeClassifier
+    clf = DecisionTreeClassifier()
+    clf = clf.fit(features, labels)
+
+    from sklearn.metrics import accuracy_score
+    acc = accuracy_score(labels, clf.predict(features))
+    print 'Accuracy (Overfit version):', acc
+
+else:
+    from sklearn.model_selection import train_test_split
+    [features_train, features_test, labels_train, labels_test] = train_test_split(features, labels, test_size=0.3, random_state=42)
+    from sklearn.tree import DecisionTreeClassifier
+    clf = DecisionTreeClassifier()
+    clf = clf.fit(features_train, labels_train)
+
+    from sklearn.metrics import accuracy_score
+    acc = accuracy_score(labels_test, clf.predict(features_test))
+    print 'Accuracy (Non-Overfit version):', acc
 

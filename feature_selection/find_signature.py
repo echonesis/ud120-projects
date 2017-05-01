@@ -38,6 +38,18 @@ labels_train   = labels_train[:150]
 
 
 ### your code goes here
+# Find the number of the total training set
+print 'Train Number:', len(labels_train)
 
-
-
+from sklearn import tree
+clf1 = tree.DecisionTreeClassifier()
+clf1 = clf1.fit(features_train, labels_train)
+pred = clf1.predict(features_test)
+from sklearn.metrics import accuracy_score
+score1 = accuracy_score(pred, labels_test)
+print 'Test Score:', score1
+print 'Feature Importances:', clf1.feature_importances_
+print 'Importance > 0.2:', [n for n,x in enumerate(clf1.feature_importances_) if x>0.2]
+print 'Maximum Importance:', max(clf1.feature_importances_)
+print 'Index:', numpy.argmax(clf1.feature_importances_)
+print 'Feature:', vectorizer.get_feature_names()[numpy.argmax(clf1.feature_importances_)]
